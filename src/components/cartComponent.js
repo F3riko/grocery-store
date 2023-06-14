@@ -8,7 +8,6 @@ function CartComponent({ items, onItemClick }) {
 
   return (
     <div className="cart">
-      <h2>Cart</h2>
       {items.map((item) => (
         <CartItem
           key={item.id}

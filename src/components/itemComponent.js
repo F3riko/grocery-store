@@ -27,7 +27,7 @@ function GroceryItem({
         <div className="d-flex flex-column">
           <div>Quantity: {itemQuantity}</div>
           <div>Name: {itemName}</div>
-          <div>Price: {itemPrice}</div>
+          <div>Price: {itemPrice}₪</div>
         </div>
       </div>
     </div>

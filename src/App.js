@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ShelfComponent from "./components/shelfComponent";
 import CartComponent from "./components/cartComponent";
+import GroceryItem from "./components/itemComponent";
 import "./App.css";
 
 function App() {
@@ -59,6 +60,8 @@ function App() {
   // States for shelf and cart
   const [shelfItems, setShelfItems] = useState(groceriesData);
   const [cartItems, setCartItems] = useState({});
+  const [totalSum, setTotalSum] = useState(0);
+  const [storeState, setStoreState] = useState("store");
 
   const handleShelfItemClick = (itemId) => {
     if (cartItems.hasOwnProperty(itemId)) {
@@ -89,6 +92,10 @@ function App() {
       },
     };
     setShelfItems(updatedShelfItems);
+
+    let updatedSum = totalSum;
+    updatedSum += groceriesData[itemId].price;
+    setTotalSum(updatedSum);
   };
 
   const handleCartItemClick = (itemId) => {
@@ -123,36 +130,89 @@ function App() {
     if (updatedCartItems[itemId].quantity <= 0) {
       delete updatedCartItems[itemId];
     }
-
     setCartItems(updatedCartItems);
+
+    let updatedSum = totalSum;
+    updatedSum -= groceriesData[itemId].price;
+    setTotalSum(updatedSum);
   };
 
-  return (
-    <div class="center">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h1 class="text-center">My Grocery Shelf</h1>
-            <div class="container">
-              <ShelfComponent
-                items={Object.values(shelfItems)}
-                onItemClick={handleShelfItemClick}
-              />
+  const handleOrderClick = () => {
+    setShelfItems(groceriesData);
+    setStoreState("receipt");
+  };
+
+  if (storeState === "store") {
+    return (
+      <div class="center">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h1 class="text-center">My Grocery Shelf</h1>
+              <div class="container">
+                <ShelfComponent
+                  items={Object.values(shelfItems)}
+                  onItemClick={handleShelfItemClick}
+                />
+              </div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <h1 class="text-center">My Grocery Cart</h1>
-            <div class="container">
-              <CartComponent
-                items={Object.values(cartItems)}
-                onItemClick={handleCartItemClick}
-              />
+            <div class="col-md-6">
+              <h1 class="text-center">My Grocery Cart</h1>
+              <div class="container">
+                <CartComponent
+                  items={Object.values(cartItems)}
+                  onItemClick={handleCartItemClick}
+                />
+                {totalSum > 0 ? (
+                  <div className="container container-center">
+                    <div className="d-flex justify-content-center align-items-center">
+                      <div className="alert alert-info d-inline-block">
+                        Total: {totalSum}₪
+                      </div>
+                    </div>
+                    <div className="d-flex justify-content-center align-items-center">
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={() => {
+                          handleOrderClick();
+                        }}
+                      >
+                        Order
+                      </button>
+                    </div>
+                  </div>
+                ) : undefined}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <>
+        {Object.values(cartItems).map((item) => (
+          <GroceryItem
+            key={item.id}
+            itemImgSrc={item.imgSrc}
+            itemName={item.name}
+            itemPrice={item.price}
+            itemQuantity={item.quantity}
+            onItemClick={() => {}}
+          />
+        ))}
+        <button
+          onClick={() => {
+            setStoreState("store");
+            setTotalSum(0);
+            setCartItems({})
+          }}
+        >
+          Back
+        </button>
+      </>
+    );
+  }
 }
 
 export default App;
