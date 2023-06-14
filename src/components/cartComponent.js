@@ -1,15 +1,16 @@
 import React from "react";
-import GroceryItem from "./itemComponent";
+import CartItem from "./itemComponent";
 
-function ShelfComponent({ items, onItemClick }) {
+function CartComponent({ items, onItemClick }) {
   const handleItemClick = (itemId) => {
     onItemClick(itemId);
   };
 
   return (
-    <div className="shelf">
+    <div className="cart">
+      <h2>Cart</h2>
       {items.map((item) => (
-        <GroceryItem
+        <CartItem
           key={item.id}
           itemImgSrc={item.imgSrc}
           itemName={item.name}
@@ -22,4 +23,4 @@ function ShelfComponent({ items, onItemClick }) {
   );
 }
 
-export default ShelfComponent;
+export default CartComponent;
