@@ -72,35 +72,35 @@ function DepartmentComponent({ groceriesData, handleOrderClick }) {
   };
 
   return (
-    <div class="center">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h1 class="text-center">Eat, drink, enjoy</h1>
-            <div class="container">
+    <div className="center">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-6">
+            <h1 className="text-center mt-5">Eat, drink, enjoy</h1>
+            <div className="container">
               <ShelfComponent
                 items={Object.values(shelfItems)}
                 onItemClick={handleShelfItemClick}
               />
             </div>
           </div>
-          <div class="col-md-6">
-            <h1 class="text-center">Cart</h1>
-            <div class="container">
+          <div className="col-md-6">
+            <h1 className="text-center mt-5">Cart</h1>
+            <div className="container">
               <ShelfComponent
                 items={Object.values(cartItems)}
                 onItemClick={handleCartItemClick}
               />
               {totalSum > 0 ? (
-                <div className="container container-center">
-                  <div className="d-flex justify-content-center align-items-center">
-                    <div className="alert alert-info d-inline-block">
+                <div classNameName="container container-center">
+                  <div classNameName="d-flex justify-content-center align-items-center">
+                    <div classNameName="alert alert-info d-inline-block">
                       Total: {totalSum}₪
                     </div>
                   </div>
-                  <div className="d-flex justify-content-center align-items-center">
+                  <div classNameName="d-flex justify-content-center align-items-center">
                     <button
-                      className="btn btn-outline-success"
+                      classNameName="btn btn-outline-success"
                       onClick={() => {
                         handleOrderClicked();
                       }}

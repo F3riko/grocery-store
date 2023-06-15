@@ -24,7 +24,7 @@ function GroceryItem({
       <div className="col-auto">
         <img src={itemImgSrc} alt={itemName} />
       </div>
-      <div className="col">
+      <div className="col ">
         <div className="d-flex flex-column">
           <div>Quantity: {itemQuantity}</div>
           <div>Name: {itemName}</div>

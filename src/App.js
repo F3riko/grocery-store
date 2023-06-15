@@ -13,28 +13,32 @@ function App() {
     setStoreState(storeState);
     setReceiptData({
       cartItems: cartItems,
-      totalSum: totalSum
+      totalSum: totalSum,
     });
   };
 
   const handleBackButtonClick = (storeState) => {
-    setStoreState(storeState)
+    setStoreState(storeState);
   };
 
   if (storeState === "store") {
     return (
-      <DepartmentComponent
-        groceriesData={groceriesData}
-        handleOrderClick={handleOrderClick}
-      />
+      <div className="bg-container">
+        <DepartmentComponent
+          groceriesData={groceriesData}
+          handleOrderClick={handleOrderClick}
+        />
+      </div>
     );
   } else {
     return (
-      <ReceiptComponent
-        cartItems={receiptData.cartItems}
-        handleBackButton={handleBackButtonClick}
-        totalSum={receiptData.totalSum}
-      />
+      <div className="bg-container">
+        <ReceiptComponent
+          cartItems={receiptData.cartItems}
+          handleBackButton={handleBackButtonClick}
+          totalSum={receiptData.totalSum}
+        />
+      </div>
     );
   }
 }
