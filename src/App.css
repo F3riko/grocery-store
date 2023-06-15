@@ -2,3 +2,17 @@ img {
   width: 50px;
   height: 50px;
 }
+
+
+html:hover {
+  user-select: none;
+}
+
+/* div {
+  height: 100%;
+  background-image: url('../public//thumbnails//background.jpg');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Bruno Ace SC', cursive;;
+} */
