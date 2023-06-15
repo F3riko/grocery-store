@@ -16,7 +16,7 @@ function ReceiptComponent({ cartItems, handleBackButton }) {
       ))}
       <button
         onClick={() => {
-          handleBackButton("store")
+          handleBackButton("store");
         }}
       >
         Back
