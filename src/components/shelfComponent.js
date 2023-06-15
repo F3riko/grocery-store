@@ -1,13 +1,13 @@
 import React from "react";
 import GroceryItem from "./itemComponent";
 
-function ShelfComponent({ items, onItemClick }) {
+function ShelfComponent({ items, onItemClick, itemFunction }) {
   const handleItemClick = (itemId) => {
     onItemClick(itemId);
   };
 
   return (
-    <div className="shelf">
+    <div className="d-flex flex-column align-items-center outer-div">
       {items.map((item) => (
         <GroceryItem
           key={item.id}
@@ -16,6 +16,7 @@ function ShelfComponent({ items, onItemClick }) {
           itemPrice={item.price}
           itemQuantity={item.quantity}
           onItemClick={() => handleItemClick(item.id)}
+          itemFunction={itemFunction}
         />
       ))}
     </div>

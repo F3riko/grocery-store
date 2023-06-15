@@ -5,7 +5,6 @@ import ReceiptComponent from "./components/receiptComponent.js";
 import "./App.css";
 
 function App() {
-  // States for shelf and cart
   const [receiptData, setReceiptData] = useState({});
   const [storeState, setStoreState] = useState("store");
 
@@ -21,24 +20,44 @@ function App() {
     setStoreState(storeState);
   };
 
+  const header = (
+    <header className="text-center pt-2">
+      <h1 style={{ "font-size": "36px" }}>Supermarket</h1>
+    </header>
+  );
+
+  const footer = (
+    <footer className="text-center pb-2">
+      <h1 style={{ "font-size": "16px" }}>
+        Shop here, spend your money, go back, spend again
+      </h1>
+    </footer>
+  );
+
   if (storeState === "store") {
     return (
       <div className="bg-container">
+        {header}
         <DepartmentComponent
           groceriesData={groceriesData}
           handleOrderClick={handleOrderClick}
         />
+        {footer}
       </div>
     );
   } else {
     return (
-      <div className="bg-container">
-        <ReceiptComponent
-          cartItems={receiptData.cartItems}
-          handleBackButton={handleBackButtonClick}
-          totalSum={receiptData.totalSum}
-        />
-      </div>
+      <>
+        {header}
+        <div className="bg-container">
+          <ReceiptComponent
+            cartItems={receiptData.cartItems}
+            handleBackButton={handleBackButtonClick}
+            totalSum={receiptData.totalSum}
+          />
+        </div>
+        {footer}
+      </>
     );
   }
 }

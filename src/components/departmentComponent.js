@@ -68,48 +68,51 @@ function DepartmentComponent({ groceriesData, handleOrderClick }) {
   };
 
   const handleOrderClicked = () => {
-      handleOrderClick("receipt", cartItems, totalSum)
+    handleOrderClick("receipt", cartItems, totalSum);
   };
 
   return (
     <div className="center">
       <div className="container">
         <div className="row">
-          <div className="col-md-6">
-            <h1 className="text-center mt-5">Eat, drink, enjoy</h1>
-            <div className="container">
-              <ShelfComponent
-                items={Object.values(shelfItems)}
-                onItemClick={handleShelfItemClick}
-              />
+          <div className="col-md-6 mb-4">
+            <div className="bg-white border border-danger rounded mt-5">
+              <h1 className="text-center mt-4">Eat, drink, enjoy</h1>
+              <div className="container">
+                <ShelfComponent
+                  items={Object.values(shelfItems)}
+                  onItemClick={handleShelfItemClick}
+                />
+              </div>
             </div>
           </div>
-          <div className="col-md-6">
-            <h1 className="text-center mt-5">Cart</h1>
-            <div className="container">
-              <ShelfComponent
-                items={Object.values(cartItems)}
-                onItemClick={handleCartItemClick}
-              />
-              {totalSum > 0 ? (
-                <div classNameName="container container-center">
-                  <div classNameName="d-flex justify-content-center align-items-center">
-                    <div classNameName="alert alert-info d-inline-block">
+          <div className="col-md-6 mb-4">
+            <div className="bg-white border border-danger rounded mt-5">
+              <h1 className="text-center mt-4">Cart</h1>
+              <div className="container">
+                <ShelfComponent
+                  items={Object.values(cartItems)}
+                  onItemClick={handleCartItemClick}
+                  itemFunction={"cart"}
+                />
+                {totalSum > 0 && (
+                  <div className="container pb-2">
+                    <div className="alert alert-info text-center">
                       Total: {totalSum}₪
                     </div>
+                    <div className="text-center">
+                      <button
+                        className="btn btn-outline-success"
+                        onClick={() => {
+                          handleOrderClicked();
+                        }}
+                      >
+                        Order
+                      </button>
+                    </div>
                   </div>
-                  <div classNameName="d-flex justify-content-center align-items-center">
-                    <button
-                      classNameName="btn btn-outline-success"
-                      onClick={() => {
-                        handleOrderClicked();
-                      }}
-                    >
-                      Order
-                    </button>
-                  </div>
-                </div>
-              ) : undefined}
+                )}
+              </div>
             </div>
           </div>
         </div>
