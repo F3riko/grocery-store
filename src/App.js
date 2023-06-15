@@ -33,6 +33,7 @@ function App() {
       <ReceiptComponent
         cartItems={receiptData.cartItems}
         handleBackButton={handleBackButtonClick}
+        totalSum={receiptData.totalSum}
       />
     );
   }

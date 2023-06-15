@@ -1,7 +1,7 @@
 import React from "react";
 import GroceryItem from "./itemComponent";
 
-function ReceiptComponent({ cartItems, handleBackButton }) {
+function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
   return (
     <>
       {Object.values(cartItems).map((item) => (
@@ -12,8 +12,10 @@ function ReceiptComponent({ cartItems, handleBackButton }) {
           itemPrice={item.price}
           itemQuantity={item.quantity}
           onItemClick={() => {}}
+          itemFunction={"receipt"}
         />
       ))}
+      <div>Total: {totalSum}₪</div>
       <button
         onClick={() => {
           handleBackButton("store");

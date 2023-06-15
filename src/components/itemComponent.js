@@ -8,6 +8,7 @@ function GroceryItem({
   itemPrice,
   itemQuantity,
   onItemClick,
+  itemFunction,
 }) {
   const handleItemClick = () => {
     if (itemQuantity > 0) {
@@ -28,6 +29,9 @@ function GroceryItem({
           <div>Quantity: {itemQuantity}</div>
           <div>Name: {itemName}</div>
           <div>Price: {itemPrice}₪</div>
+          {itemFunction == "receipt" ? (
+            <div>Subtotal: {(itemPrice * itemQuantity).toFixed(2)}₪</div>
+          ) : undefined}
         </div>
       </div>
     </div>
