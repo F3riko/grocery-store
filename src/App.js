@@ -3,6 +3,7 @@ import groceriesData from "./groceriesData.js";
 import DepartmentComponent from "./components/departmentComponent.js";
 import ReceiptComponent from "./components/receiptComponent.js";
 import "./App.css";
+import { Link, Route, Routes } from "react-router-dom";
 
 function App() {
   const [receiptData, setReceiptData] = useState({});
@@ -21,9 +22,37 @@ function App() {
   };
 
   const header = (
-    <header className="text-center pt-2">
-      <h1 style={{ "font-size": "36px" }}>Supermarket</h1>
-    </header>
+    <>
+      <header className="text-center pt-2">
+        <h1 style={{ "font-size": "36px" }}>Supermarket</h1>
+      </header>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Order now</Link>
+          </li>
+          <li>
+            <Link to="/order-history">Order history</Link>
+          </li>
+        </ul>
+      </nav>
+      <Routes>
+        <Route
+          path=""
+          element={
+            <div className="bg-container">
+              {header}
+              <DepartmentComponent
+                groceriesData={groceriesData}
+                handleOrderClick={handleOrderClick}
+              />
+              {footer}
+            </div>
+          }
+        />
+        <Route path="" element={<OrderHistory />} />
+      </Routes>
+    </>
   );
 
   const footer = (
