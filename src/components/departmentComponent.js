@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ShelfComponent from "./shelfComponent";
+import { useNavigate } from "react-router-dom";
 
 function DepartmentComponent({ groceriesData, handleOrderClick }) {
   // States for shelf and cart
   const [shelfItems, setShelfItems] = useState(groceriesData);
   const [cartItems, setCartItems] = useState({});
   const [totalSum, setTotalSum] = useState(0);
+  const navigate = useNavigate();
 
   const handleShelfItemClick = (itemId) => {
     if (cartItems.hasOwnProperty(itemId)) {
@@ -68,7 +70,7 @@ function DepartmentComponent({ groceriesData, handleOrderClick }) {
   };
 
   const handleOrderClicked = () => {
-    handleOrderClick("receipt", cartItems, totalSum);
+    handleOrderClick("receipt", cartItems, totalSum, navigate);
   };
 
   return (

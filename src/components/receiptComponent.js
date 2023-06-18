@@ -1,7 +1,15 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import GroceryItem from "./itemComponent";
 
 function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
+  const navigate = useNavigate();
+
+  const handleBackButtonClick = () => {
+    handleBackButton("store");
+    navigate("/");
+  };
+
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-white mt-5">
       <div className="container">
@@ -22,13 +30,11 @@ function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
                   />
                 ))}
               </div>
-              <div className="text-center mt-3">Total: {totalSum}₪</div>
+              <div className="text-center mt-3">Total: {String(totalSum)}₪</div>
               <div className="text-center mt-3">
                 <button
                   className="btn btn-outline-primary mb-3"
-                  onClick={() => {
-                    handleBackButton("store");
-                  }}
+                  onClick={handleBackButtonClick}
                 >
                   Back
                 </button>
