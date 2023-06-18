@@ -8,3 +8,10 @@ export function getOrderHistory() {
   const orderHistory = localStorage.getItem("orderHistory");
   return orderHistory ? JSON.parse(orderHistory) : [];
 }
+
+export function clearOrderHistoryData() {
+  localStorage.removeItem("orderHistory");
+  window.location.reload(); // Refresh the page
+}
+
+

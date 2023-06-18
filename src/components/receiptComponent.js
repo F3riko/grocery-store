@@ -1,18 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GroceryItem from "./itemComponent";
-import "../App.css";
-import { addToOrderHistory } from "../localStorageOp";
 
-function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
-
-
+function ReceiptComponent({ orderHistory, handleBackButton }) {
   const navigate = useNavigate();
+  const { orderId } = useParams();
+  const order = orderHistory.find((order) => order.id === orderId);
 
   const handleBackButtonClick = () => {
     handleBackButton("store");
     navigate("/");
   };
+
+  if (!order) {
+    return <div>Order not found</div>;
+  }
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100 bg-white mt-5">
@@ -22,7 +24,7 @@ function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
             <div className="bg-white border border-danger rounded mt-5">
               <h1 className="text-center mt-5">Your receipt</h1>
               <div className="d-flex flex-column align-items-center outer-div">
-                {Object.values(cartItems).map((item) => (
+                {Object.values(order.items).map((item) => (
                   <GroceryItem
                     key={item.id}
                     itemImgSrc={item.imgSrc}
@@ -34,7 +36,7 @@ function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
                   />
                 ))}
               </div>
-              <div className="text-center mt-3">Total: {String(totalSum)}₪</div>
+              <div className="text-center mt-3">Total: {String(order.totalSum)}₪</div>
               <div className="text-center mt-3">
                 <button
                   className="btn btn-outline-primary mb-3"
