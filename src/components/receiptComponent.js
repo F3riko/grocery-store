@@ -1,8 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import GroceryItem from "./itemComponent";
+import "../App.css";
+import { addToOrderHistory } from "../localStorageOp";
 
 function ReceiptComponent({ cartItems, handleBackButton, totalSum }) {
+
+
   const navigate = useNavigate();
 
   const handleBackButtonClick = () => {

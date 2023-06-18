@@ -5,7 +5,8 @@ import DepartmentComponent from "./components/departmentComponent.js";
 import ReceiptComponent from "./components/receiptComponent.js";
 import HeaderComponent from "./components/headerComponent.js";
 import FooterComponent from "./components/footerComponent.js";
-import OrderHistoryComponent from "./components/orderHistoryComponent.js"
+import OrderHistoryComponent from "./components/orderHistoryComponent.js";
+import { addToOrderHistory } from "./localStorageOp.js";
 
 function App() {
   const [receiptData, setReceiptData] = useState({});
@@ -15,6 +16,10 @@ function App() {
     setStoreState(storeState);
     setReceiptData({
       cartItems: cartItems,
+      totalSum: totalSum,
+    });
+    addToOrderHistory({
+      items: Object.values(cartItems),
       totalSum: totalSum,
     });
     navigate("/receipt");
@@ -38,10 +43,7 @@ function App() {
               />
             }
           />
-          <Route
-            path="/order-history"
-            element={<OrderHistoryComponent />}
-          />
+          <Route path="/order-history" element={<OrderHistoryComponent />} />
           <Route
             path="/receipt"
             element={

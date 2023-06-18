@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ShelfComponent from "./shelfComponent";
 import { useNavigate } from "react-router-dom";
+import "../App.css"
 
 function DepartmentComponent({ groceriesData, handleOrderClick }) {
   // States for shelf and cart
