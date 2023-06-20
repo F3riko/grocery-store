@@ -1,16 +1,10 @@
 import React from "react";
-import { getOrderHistory, clearOrderHistory } from "../localStorageOp";
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { getOrderHistory, clearOrderHistoryData } from "../localStorageOp";
+import { Link, Routes, Route } from "react-router-dom";
 import ReceiptComponent from "./receiptComponent";
-import { clearOrderHistoryData } from "../localStorageOp";
 
 function OrderHistory() {
-  const navigate = useNavigate();
   const orderHistory = getOrderHistory();
-
-  function handleOrderClick(orderId) {
-    navigate(`/receipt/${orderId}`);
-  }
 
   function handleClearHistory() {
     clearOrderHistoryData();

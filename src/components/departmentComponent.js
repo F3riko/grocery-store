@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../App.css"
 
 function DepartmentComponent({ groceriesData, handleOrderClick }) {
-  // States for shelf and cart
+  
   const [shelfItems, setShelfItems] = useState(groceriesData);
   const [cartItems, setCartItems] = useState({});
   const [totalSum, setTotalSum] = useState(0);
@@ -71,7 +71,7 @@ function DepartmentComponent({ groceriesData, handleOrderClick }) {
   };
 
   const handleOrderClicked = () => {
-    handleOrderClick("receipt", cartItems, totalSum, navigate);
+    handleOrderClick(cartItems, totalSum, navigate);
   };
 
   return (

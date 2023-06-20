@@ -11,7 +11,7 @@ export function getOrderHistory() {
 
 export function clearOrderHistoryData() {
   localStorage.removeItem("orderHistory");
-  window.location.reload(); // Refresh the page
+  window.location.reload();
 }
 
 

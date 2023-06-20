@@ -13,8 +13,7 @@ function App() {
   const [receiptData, setReceiptData] = useState({});
   const [orderHistory, setOrderHistory] = useState(getOrderHistory());
 
-  const handleOrderClick = (storeState, cartItems, totalSum, navigate) => {
-    // setStoreState(storeState);
+  const handleOrderClick = (cartItems, totalSum, navigate) => {
     setReceiptData({
       cartItems: cartItems,
       totalSum: totalSum,
